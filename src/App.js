@@ -1,36 +1,39 @@
 import React , {useState} from "react";
-import { ButtonToggle, ChangeButton, Container, Header, ImageLogo, Navbar, NavbarBody, NavbarHead, NavbarLinks, ReactImage } from "./components/Styles";
-import { AiOutlineMenu } from 'react-icons/ai';
+import { Body, ButtonNav, ButtonToggle, ChangeButton, Container, Header, ImageLogo, Navbar, NavbarBody, NavbarHead, NavbarLinks, ReactImage } from "./Styles";
+import { AiOutlineMenu  , AiOutlineClose} from 'react-icons/ai';
+
 function App() {
   const [defaultColor ,setColor] = useState(true)
-  const LightBackgroundColor = '#F8F8F8'
-  const DarkBackgroundColor = '#000' 
-  const LightColor = "#fff"
-  const DarkColor="#000"
+  const [toggle,setToggle] = useState(true)
   return (
-    <>
-    <Navbar >
-      <NavbarHead LightBackgroundColor={LightBackgroundColor} DarkBackgroundColor={DarkBackgroundColor}  defaultColor={defaultColor} >
-        <ImageLogo src={`https://avatars.githubusercontent.com/u/9919?s=280&v=4`}/> 
-        <ButtonToggle>
-          <AiOutlineMenu/>
+    <Body defaultColor={defaultColor}>
+    <Navbar   toggle={toggle} defaultColor={defaultColor} >
+      <NavbarHead defaultColor={defaultColor} >
+        <ImageLogo  defaultColor={defaultColor}
+         src={defaultColor ?  'https://avatars.githubusercontent.com/u/9919?s=280&v=4' : 'https://www.kindpng.com/picc/m/255-2558173_github-logo-png-transparent-png.png'}/>
+        
+        <ButtonToggle  defaultColor={defaultColor} onClick={()=>setToggle(false)}>
+          <AiOutlineClose  />
         </ButtonToggle> 
       </NavbarHead>
 
-      <NavbarBody>
-        <NavbarLinks>Home</NavbarLinks>
-        <NavbarLinks>about us</NavbarLinks>
-        <NavbarLinks>blog</NavbarLinks>
-        <NavbarLinks>contact us</NavbarLinks>
+      <NavbarBody defaultColor={defaultColor}>
+        <NavbarLinks defaultColor={defaultColor}>Home</NavbarLinks>
+        <NavbarLinks defaultColor={defaultColor}>about us</NavbarLinks>
+        <NavbarLinks defaultColor={defaultColor}>blog</NavbarLinks>
+        <NavbarLinks defaultColor={defaultColor}>contact us</NavbarLinks>
       </NavbarBody>
     </Navbar>
-    <Container>
-      <ReactImage src="http://learnstuff.io/img/svg/react.svg"/>
-      <Header>Made by Styled components</Header>
+    <Container defaultColor={defaultColor}>
+      <ReactImage  defaultColor={defaultColor} src={defaultColor ?  'http://learnstuff.io/img/svg/react.svg' : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv6E4xe90HJNx3rCYXx5B66KLoseJ_EaGje2R7iGibcaDlIHmS8QpK4cvIxZrnL7uNKPk&usqp=CAU'}/>
+      <Header defaultColor={defaultColor} >Made by Styled components</Header>
     </Container>
-    <ChangeButton>change</ChangeButton>
-    </>
+    <ChangeButton defaultColor={defaultColor}  onClick={()=>setColor(!defaultColor)} >change</ChangeButton>
+    <ButtonNav defaultColor={defaultColor} onClick={()=>setToggle(true) }  > <AiOutlineMenu  /> </ButtonNav>
+    </Body>
   );
 }
-
+// https://www.kindpng.com/picc/m/255-2558173_github-logo-png-transparent-png.png
+// https://avatars.githubusercontent.com/u/9919?s=280&v=4
+// https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg
 export default App;
